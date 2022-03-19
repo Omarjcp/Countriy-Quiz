@@ -1,0 +1,30 @@
+.containerMain {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #464ba8;
+  height: 100vh;
+  width: 100vw;
+}
+
+.figureone {
+  box-sizing: border-box;
+  background-color: rgba(131, 136, 241, 0.7);
+  height: 70%;
+  width: 100%;
+  position: absolute;
+  top: -10%;
+  left: 60%;
+  transform: rotate(20deg);
+}
+
+.figuretwo {
+  box-sizing: border-box;
+  background-color: rgba(131, 136, 241, 0.7);
+  height: 70%;
+  width: 100%;
+  position: absolute;
+  bottom: -10%;
+  right: 60%;
+  transform: rotate(20deg);
+}
