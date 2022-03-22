@@ -14,18 +14,33 @@ export const CardComponent = ({
   isFlagAsk,
   setIsFlagAsk,
   answersCorrects,
+  setAnswersCorrects,
   failQuestion,
   allCountries,
   fourCountries,
   setAllCountries,
+  setFailQuestion,
+  setStart,
+  setIsSelectedAOption,
 }) => {
-  const onNext = (e) => {
-    e.preventDefault();
-    axios("https://restcountries.com/v2/all")
-      .then(({ data }) => setAllCountries(data))
-      .catch((error) => console.log(error));
+  const onNext = () => {
+    // e.preventDefault();
+    setAllCountries(allCountries);
+    setAnswersCorrects(answersCorrects + 1);
 
     isFlagAsk ? setIsFlagAsk(false) : setIsFlagAsk(true);
+
+    // isSelectedAOption
+    //   ? setIsSelectedAOption(false)
+    //   : setIsSelectedAOption(true);
+
+    let buttonsWrong = document.querySelectorAll(".answerWrong");
+    for (var i = 0; i < buttonsWrong.length; i++) {
+      buttonsWrong[i].classList.remove("answerWrong");
+    }
+
+    let buttonCorrect = document.querySelector(".answerCorrect");
+    buttonCorrect.classList.remove("answerCorrect");
   };
 
   const onSelectOption = (e) => {
@@ -37,9 +52,20 @@ export const CardComponent = ({
     let capital = document.getElementById("capital");
     let flag = document.getElementById("flag");
 
-    if (capitalSelected === capital || flagSelected === flag?.src) {
+    if (capitalSelected == capital?.innerText || flagSelected === flag?.src) {
+      let buttons = document.getElementsByClassName("buttonOption");
+      for (var i = 0; i < buttons.length; i++) {
+        buttons[i].className += " answerWrong";
+      }
+
+      e.target.classList.add("answerCorrect");
+
+      setTimeout(() => onNext(), 2000);
+
       console.log("si es la capital o la bandera");
     } else {
+      e.target.classList.add("answerWrong");
+      setTimeout(() => setFailQuestion(true), 1000);
       console.log("no es la capital ni la bandera");
     }
   };
@@ -47,7 +73,7 @@ export const CardComponent = ({
   const positionRandom = fourCountries[Math.floor(Math.random() * 3)];
 
   return (
-    <div className="containerCard">
+    <div style={{ zIndex: "1" }}>
       <Title style={{ color: "#F2F2F2", fontWeight: "700" }}>COUTRY QUIZ</Title>
       {!failQuestion ? (
         <Card bordered={false} className="card">
@@ -67,8 +93,8 @@ export const CardComponent = ({
               level={3}
               style={{ color: "#2F527B", margin: "1.2rem 0 2rem 0" }}
             >
-              <span id="capital">{positionRandom?.capital} </span>
-              is the capital of
+              <span id="capital">{positionRandom?.capital}</span> is the capital
+              of
             </Title>
           )}
           <button
@@ -90,7 +116,6 @@ export const CardComponent = ({
             {fourCountries[1]?.name}
           </button>
           <button
-            block
             className="buttonOption"
             value={fourCountries[2]?.name}
             id={fourCountries[2]?.capital}
@@ -100,7 +125,6 @@ export const CardComponent = ({
             {fourCountries[2]?.name}
           </button>
           <button
-            block
             className="buttonOption"
             value={fourCountries[3]?.name}
             id={fourCountries[3]?.capital}
@@ -110,7 +134,7 @@ export const CardComponent = ({
           >
             {fourCountries[3]?.name}
           </button>
-          {!isSelectedAOption ? (
+          {/* {isSelectedAOption ? (
             <div className="containerButtomNext">
               <Button className="buttonNext" onClick={onNext}>
                 Next
@@ -118,10 +142,15 @@ export const CardComponent = ({
             </div>
           ) : (
             <></>
-          )}
+          )} */}
         </Card>
       ) : (
-        <CardResult answersCorrects={answersCorrects} />
+        <CardResult
+          setStart={setStart}
+          setAnswersCorrects={setAnswersCorrects}
+          answersCorrects={answersCorrects}
+          setFailQuestion={setFailQuestion}
+        />
       )}
     </div>
   );

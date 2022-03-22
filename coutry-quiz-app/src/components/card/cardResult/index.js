@@ -4,7 +4,17 @@ import "./index.scss";
 
 const { Title } = Typography;
 
-export const CardResult = ({ answersCorrects }) => {
+export const CardResult = ({
+  answersCorrects,
+  setStart,
+  setAnswersCorrects,
+  setFailQuestion,
+}) => {
+  const onTryAgain = () => {
+    setStart(false);
+    setAnswersCorrects(0);
+    setFailQuestion(false);
+  };
   return (
     <div className="containerCardResult">
       <Card bordered={false} className="cardResult">
@@ -24,7 +34,9 @@ export const CardResult = ({ answersCorrects }) => {
           correct answers
         </p>
         <div className="containerButtomTryAgain">
-          <Button className="buttonTryAgain">Try Again</Button>
+          <Button className="buttonTryAgain" onClick={onTryAgain}>
+            Try Again
+          </Button>
         </div>
       </Card>
     </div>

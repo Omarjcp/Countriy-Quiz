@@ -7,21 +7,24 @@ export const Welcome = ({ onClickStart }) => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        zIndex: "2",
       }}
     >
       <button
         style={{
-          width: "5rem",
-          height: "2.5rem",
+          width: "15rem",
+          height: "3rem",
           backgroundColor: "transparent",
           border: "2px solid #f9a826",
           borderRadius: "12px",
           color: "#fff",
-          fontWeight: "600",
+          fontWeight: "700",
+          fontSize: "1.5rem",
+          letterSpacing: "2px",
         }}
         onClick={onClickStart}
       >
-        Start
+        Start Game
       </button>
     </div>
   );

@@ -11,7 +11,7 @@ export const LoadingComponent = () => {
         alignItems: "center",
       }}
     >
-      <LoadingOutlined />
+      <LoadingOutlined style={{ fontSize: "5rem" }} />
     </div>
   );
 };

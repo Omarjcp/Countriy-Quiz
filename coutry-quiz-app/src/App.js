@@ -21,24 +21,24 @@ function App() {
   const [countryCurrent, setCountryCurrent] = useState();
   let fourCountries = [];
 
-  const onClickStart = (e) => {
-    e.preventDefault();
+  useEffect(() => {
     axios("https://restcountries.com/v2/all")
       .then(({ data }) => setAllCountries(data))
       .catch((error) => console.log(error));
+  }, []);
+  const onClickStart = (e) => {
+    e.preventDefault();
+    // axios("https://restcountries.com/v2/all")
+    //   .then(({ data }) => setAllCountries(data))
+    //   .catch((error) => console.log(error));
 
     setStart(true);
     setTimeout(() => setLoading(false), 2000);
   };
 
   for (let i = 0; i < 4; i++) {
-    fourCountries.push(allCountries[Math.ceil(Math.random() * 250)]);
+    fourCountries.push(allCountries[Math.ceil(Math.random() * 249)]);
   }
-  // useEffect(() => {
-  //   axios("https://restcountries.com/v2/all")
-  //     .then(({ data }) => setAllCountries(data))
-  //     .catch((error) => console.log(error));
-  // }, []);
 
   return (
     <div className="containerMain">
@@ -54,11 +54,15 @@ function App() {
           isSelectedAOption={isSelectedAOption}
           isFlagAsk={isFlagAsk}
           answersCorrects={answersCorrects}
+          setAnswersCorrects={setAnswersCorrects}
           failQuestion={failQuestion}
           allCountries={allCountries}
           setIsFlagAsk={setIsFlagAsk}
           fourCountries={fourCountries}
           setAllCountries={setAllCountries}
+          setFailQuestion={setFailQuestion}
+          setStart={setStart}
+          setIsSelectedAOption={setIsSelectedAOption}
         />
       )}
       <Footer />
