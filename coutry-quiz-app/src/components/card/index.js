@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import axios from "axios";
 
 import { CardResult } from "./cardResult";
 
@@ -16,23 +17,34 @@ export const CardComponent = ({
   failQuestion,
   allCountries,
   fourCountries,
+  setAllCountries,
 }) => {
   const onNext = (e) => {
     e.preventDefault();
+    axios("https://restcountries.com/v2/all")
+      .then(({ data }) => setAllCountries(data))
+      .catch((error) => console.log(error));
 
-    for (let i = 0; i < 4; i++) {
-      fourCountries.unshift(allCountries[Math.ceil(Math.random() * 250)]);
-    }
+    isFlagAsk ? setIsFlagAsk(false) : setIsFlagAsk(true);
   };
 
   const onSelectOption = (e) => {
     e.preventDefault();
-    console.log(e.target.value);
+
+    let capitalSelected = e.target.id;
+    let flagSelected = e.target.name;
+
+    let capital = document.getElementById("capital");
+    let flag = document.getElementById("flag");
+
+    if (capitalSelected === capital || flagSelected === flag?.src) {
+      console.log("si es la capital o la bandera");
+    } else {
+      console.log("no es la capital ni la bandera");
+    }
   };
 
-  let positionRandom = fourCountries[Math.floor(Math.random() * 3)];
-  let capital = useRef();
-  console.log(fourCountries);
+  const positionRandom = fourCountries[Math.floor(Math.random() * 3)];
 
   return (
     <div className="containerCard">
@@ -55,34 +67,49 @@ export const CardComponent = ({
               level={3}
               style={{ color: "#2F527B", margin: "1.2rem 0 2rem 0" }}
             >
-              <span id="capital" ref={capital}>
-                {fourCountries[Math.floor(Math.random() * 3)]?.capital}{" "}
-              </span>
+              <span id="capital">{positionRandom?.capital} </span>
               is the capital of
             </Title>
           )}
-          <Button
-            block
+          <button
             className="buttonOption"
             value={fourCountries[0]?.name}
+            id={fourCountries[0]?.capital}
+            name={fourCountries[0]?.flag}
             onClick={onSelectOption}
           >
-            <span>A</span> {fourCountries[0]?.name}
-          </Button>
-          <Button block className="buttonOption" onClick={onSelectOption}>
-            <span>B</span> {fourCountries[1]?.name}
-          </Button>
-          <Button block className="buttonOption" onClick={onSelectOption}>
-            <span>C</span> {fourCountries[2]?.name}
-          </Button>
-          <Button
+            {fourCountries[0]?.name}
+          </button>
+          <button
+            className="buttonOption"
+            value={fourCountries[1]?.name}
+            id={fourCountries[1]?.capital}
+            name={fourCountries[1]?.flag}
+            onClick={onSelectOption}
+          >
+            {fourCountries[1]?.name}
+          </button>
+          <button
             block
             className="buttonOption"
+            value={fourCountries[2]?.name}
+            id={fourCountries[2]?.capital}
+            name={fourCountries[2]?.flag}
+            onClick={onSelectOption}
+          >
+            {fourCountries[2]?.name}
+          </button>
+          <button
+            block
+            className="buttonOption"
+            value={fourCountries[3]?.name}
+            id={fourCountries[3]?.capital}
+            name={fourCountries[3]?.flag}
             style={{ marginBottom: "2rem" }}
             onClick={onSelectOption}
           >
-            <span>D</span> {fourCountries[3]?.name}
-          </Button>
+            {fourCountries[3]?.name}
+          </button>
           {!isSelectedAOption ? (
             <div className="containerButtomNext">
               <Button className="buttonNext" onClick={onNext}>
