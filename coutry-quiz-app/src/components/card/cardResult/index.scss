@@ -1,0 +1,37 @@
+.containerCardResult {
+  .cardResult {
+    width: 25rem;
+    height: auto;
+    border-radius: 20px !important;
+
+    .ant-card-body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      width: 100%;
+
+      .containerButtomTryAgain {
+        padding-top: 2.6rem;
+
+        .buttonTryAgain {
+          width: 9rem;
+          height: 2.7rem;
+          border: 2px solid #1d355d;
+          border-radius: 12px;
+          span {
+            font-weight: 600;
+            color: #1d355d;
+          }
+
+          &:hover {
+            background-color: #1d355d;
+            span {
+              color: #fff;
+            }
+          }
+        }
+      }
+    }
+  }
+}
