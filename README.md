@@ -14,10 +14,10 @@ Cuando tengas 1 respuesta incorrecta te aparecerá un cuadro informandote la can
 Espero que sea de tu agrado y con esto podamos aprender un poco mas sobre capitales y banderas del mundo.
 
 * Este proyecto fue realizado con:
-. React.js
-. Node Sass
-. AntDesign
-. Axios
+React.js
+Node Sass
+AntDesign
+Axios
 
 * API consumida:
 . https://restcountries.com
