@@ -14,14 +14,17 @@ Cuando tengas 1 respuesta incorrecta te aparecerá un cuadro informandote la can
 Espero que sea de tu agrado y con esto podamos aprender un poco mas sobre capitales y banderas del mundo.
 
 * Este proyecto fue realizado con:
-- React.js
-- Node Sass
-- AntDesign
-- Axios
+. React.js
+. Node Sass
+. AntDesign
+. Axios
 
 * API consumida:
-- https://restcountries.com
+. https://restcountries.com
 
 * El deploy se realizó en Firebase:
-- Link del Quiz
+. Link del Quiz
 https://country-quiz-93a82.web.app/
+
+* Si quieres ver otros proyectos realizados puedes ver mi portafolio:
+https://omarcastillo-portfolio.web.app/
