@@ -22,7 +22,7 @@ Espero que sea de tu agrado y con esto podamos aprender un poco mas sobre capita
 # API consumida:
 * https://restcountries.com
 
- #El deploy se realizó en Firebase:
+# El deploy se realizó en Firebase:
 * Link del Quiz
 https://country-quiz-93a82.web.app/
 
